@@ -1,4 +1,4 @@
-package com.findtrip.findtripufrn;
+package com.wia;
 
 import org.junit.Test;
 

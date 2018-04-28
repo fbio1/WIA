@@ -1,4 +1,4 @@
-package com.findtrip.findtripufrn;
+package com.wia;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
