@@ -1,4 +1,4 @@
-package com.wia.wia;
+package com.wia;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
