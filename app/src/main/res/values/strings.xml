@@ -6,4 +6,10 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string name="sobre_text">Texto explicando o que é o WIA</string>
+
+    <string name="gabriel_quaresma">Gabriel Quaresma<a href="https://github.com/joaoGabriel55"></a></string>
+    <string name="fabio_henrique">Fábio Henrique<a href="https://github.com/fbio1"></a></string>
+    <string name="adryel_juliao">Adryel Julião<a href="https://github.com/dryel23"></a></string>
 </resources>
