@@ -1,4 +1,4 @@
-package com.wia;
+package com.wia.Activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.wia.R;
 
 public class SobreActivity extends AppCompatActivity {
 

@@ -6,19 +6,23 @@ public class Local {
 
     private int id;
     private String nome;
-    private String endereco;
+    private String descricao;
     private String responsavel;
     private String contato;
-    private String ramal;
     private String image;
+    private String setor;
+    private double latitude;
+    private double longitude;
 
-    public Local(String nome, String endereco, String responsavel, String contato, String ramal, String image) {
+    public Local(String nome, String descricao, String responsavel, String contato, String image, String setor, double latitude, double longitude) {
         this.nome = nome;
-        this.endereco = endereco;
+        this.descricao = descricao;
         this.responsavel = responsavel;
         this.contato = contato;
-        this.ramal = ramal;
         this.image = image;
+        this.setor = setor;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Local() {
@@ -40,14 +44,6 @@ public class Local {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public String getResponsavel() {
         return responsavel;
     }
@@ -64,20 +60,44 @@ public class Local {
         this.contato = contato;
     }
 
-    public String getRamal() {
-        return ramal;
-    }
-
-    public void setRamal(String ramal) {
-        this.ramal = ramal;
-    }
-
     public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
+        this.setor = setor;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
