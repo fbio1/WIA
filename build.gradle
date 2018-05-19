@@ -1,15 +1,20 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.google.gms:google-services:3.2.0' // google-services plugin
+        // os serviços do google (firebase) que vamos usar é 11.8.0
+
         
 
+
+        //https://github.com/firebase/FirebaseUI-Android link para ver as versões das bibliotecas que vamos usar
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -19,6 +24,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://maven.google.com" // Google's Maven repository
+        }
     }
 }
 

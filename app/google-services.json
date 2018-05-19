@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "171118486717",
+    "firebase_url": "https://wiapp-a7cc8.firebaseio.com",
+    "project_id": "wiapp-a7cc8",
+    "storage_bucket": "wiapp-a7cc8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171118486717:android:7a0d05afd7ad89a1",
+        "android_client_info": {
+          "package_name": "com.wia.wia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "171118486717-5bhgahfrgomlavef6hr971u4n2r2b2vf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wia",
+            "certificate_hash": "010068db63bc9a3e9799dc1ed52e9add68d00748"
+          }
+        },
+        {
+          "client_id": "171118486717-u1q19ojsi9vj1qts22f8sgn6ekm7c264.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA01BZY3l_f7tkB5z4IglyTeHKoxb-WKyE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "171118486717-u1q19ojsi9vj1qts22f8sgn6ekm7c264.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
