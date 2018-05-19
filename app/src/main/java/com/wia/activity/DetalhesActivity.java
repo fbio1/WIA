@@ -1,6 +1,9 @@
 package com.wia.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,8 +19,16 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.wia.R;
 import com.wia.model.Local;
+
+import java.io.File;
+import java.io.IOException;
 
 public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCallback {
     private ImageView image;
@@ -26,6 +37,7 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
     private TextView contato;
     private TextView responsavel;
     private TextView setor;
+    private TextView email;
 
     GoogleMap mGoogleMap;
     MapView mMapView;
@@ -46,6 +58,7 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
         contato = findViewById(R.id.contatoDetalhes);
         responsavel = findViewById(R.id.responsavelDetalhes);
         setor = findViewById(R.id.setorDetalhes);
+        email = findViewById(R.id.emailDetalhes);
 
         local = new Local();
         Intent recebe = getIntent();
@@ -67,9 +80,29 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
             contato.setText(local.getContato());
             responsavel.setText(local.getResponsavel());
             setor.setText(local.getSetor());
-            Glide.with(image.getContext())
-                    .load(local.getImage())
-                    .into(image);
+            email.setText(local.getEmail());
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://wia-ufrn.appspot.com/").child(local.getImage());
+
+            try {
+                final File localFile = File.createTempFile("images", "jpg");
+                storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        //locaisViewHolder.img.setImageBitmap(bitmap);
+                        Glide.with(image.getContext())
+                                .load(bitmap)
+                                .into(image);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                    }
+                });
+            } catch (IOException e ) {}
+
         }
 
         mMapView = (MapView) findViewById(R.id.map);
@@ -94,5 +127,11 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
 
         googleMap.addMarker(new MarkerOptions().position(new LatLng(local.getLatitude(), local.getLongitude())).title(local.getNome()));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(local.getLatitude(), local.getLongitude()),16));
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
 }

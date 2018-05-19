@@ -44,8 +44,14 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         database = FirebaseDatabase.getInstance();
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         localReference = database.getReference().child("local");
+
+        if (database == null) {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            database.setPersistenceEnabled(true);
+            localReference = database.getReference().child("local");
+
+        }
 
         //preenchelocal();
 
@@ -95,6 +101,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            finish();
             super.onBackPressed();
         }
     }
@@ -142,4 +149,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
