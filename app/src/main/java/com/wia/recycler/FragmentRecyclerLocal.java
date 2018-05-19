@@ -1,4 +1,4 @@
-package com.wia;
+package com.wia.recycler;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,8 +24,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
-import com.wia.Activity.DetalhesActivity;
+import com.wia.activity.DetalhesActivity;
+import com.wia.MyRecyclerView;
+import com.wia.R;
+import com.wia.RecyclerAdapter;
 import com.wia.model.Local;
 
 import java.io.File;
@@ -56,27 +58,7 @@ public class FragmentRecyclerLocal extends Fragment {
 
         mDatabaseReference = mFirebaseDatabase.getReference().child("local");
 
-        Local l = new Local();
-        l.setImage("gs://wia-ufrn.appspot.com");
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(l.getImage()).child("reiot.jpg");
-
-        try {
-            final File localFile = File.createTempFile("images", "jpg");
-            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    imageView.setImageBitmap(bitmap);
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                }
-            });
-        } catch (IOException e ) {}
 
         recyclerView = v.findViewById(R.id.recyclerview);
 
@@ -98,7 +80,11 @@ public class FragmentRecyclerLocal extends Fragment {
                 localBundle.putString("descricao", local.getDescricao());
                 localBundle.putString("contato", local.getContato());
                 localBundle.putString("responsavel", local.getResponsavel());
-                localBundle.putString("imagem", local.getImage());
+
+
+                //localBundle.putString("imagem", local.getImage());
+                readImage(local.getImage());
+
                 localBundle.putString("setor", local.getSetor());
                 localBundle.putDouble("latitude", local.getLatitude());
                 localBundle.putDouble("longitude", local.getLongitude());
@@ -131,5 +117,30 @@ public class FragmentRecyclerLocal extends Fragment {
 
     public RecyclerAdapter getAdapter(){
         return this.adapter;
+    }
+
+
+    public void readImage(String imageName){
+        final String urlFirebase = "gs://wia-ufrn.appspot.com";
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReferenceFromUrl(urlFirebase).child(imageName);
+
+        try {
+            final File localFile = File.createTempFile("images", "jpg");
+            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    imageView.setImageBitmap(bitmap);
+
+                }
+
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                }
+            });
+        } catch (IOException e ) {}
     }
 }
