@@ -1,13 +1,7 @@
-package com.wia.Activity;
+package com.wia.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.design.widget.NavigationView;
@@ -16,27 +10,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
-import com.wia.FragmentRecyclerLocal;
 import com.wia.R;
 import com.wia.model.Local;
-
-import java.io.File;
-import java.io.IOException;
+import com.wia.recycler.FragmentRecyclerLocal;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,12 +25,6 @@ public class MainActivity extends AppCompatActivity
     private DatabaseReference localReference;
 
     private FragmentRecyclerLocal fragmentRecyclerlocal;
-
-    private FirebaseStorage storage;
-    private StorageReference storageRef;
-
-    ImageView imageView;
-    Context c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         database = FirebaseDatabase.getInstance();
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);//Persistencia em disco local
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         localReference = database.getReference().child("local");
 
         preencheBanco();
@@ -91,7 +65,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void preenchelocal() {
-        Local c1 = new Local("Auditório da Reitoria", "", "", "", "gs://wia-ufrn.appspot.com/reiot.jpg", "Próximo ao centro de Convivência", -5.835574, -35.202114);
+        Local c1 = new Local("Auditório da Reitoria", "", "", "", "reiot.jpg", "Próximo ao centro de Convivência", -5.835574, -35.202114);
 //        Local c2 = new Local("Setor de Aulas IV", "", "", "", "", "Bloco A", -5.837592, -35.199491);
 //        Local c3 = new Local("Setor de Aulas III, Bloco G", "", "", "", "", "Setor 3", -5.835574, -35.202114);
 //        Local c4 = new Local("Anfiteatros do CCET – Centro de Ciências Exatas e da Terra", "", "", "", "", "Próximo ao setor 3", -5.837592, -35.199491);

@@ -1,4 +1,4 @@
-package com.wia.Activity;
+package com.wia.activity;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -40,12 +40,12 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
         ab.setTitle("Detalhes da Local");
         ab.setDisplayHomeAsUpEnabled(true);
 
-//        image = findViewById(R.id.imageDetalhes);
-//        nome = findViewById(R.id.nomeDetalhes);
-//        descricao = findViewById(R.id.descricaoDetalhes);
-//        contato = findViewById(R.id.contatoDetalhes);
-//        responsavel = findViewById(R.id.responsavelDetalhes);
-//        setor = findViewById(R.id.setorDetalhes);
+        image = findViewById(R.id.imageDetalhes);
+        nome = findViewById(R.id.nomeDetalhes);
+        descricao = findViewById(R.id.descricaoDetalhes);
+        contato = findViewById(R.id.contatoDetalhes);
+        responsavel = findViewById(R.id.responsavelDetalhes);
+        setor = findViewById(R.id.setorDetalhes);
 
         local = new Local();
         Intent recebe = getIntent();
@@ -53,12 +53,11 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
 
         if (bundlelocal!=null){
             local.setNome(bundlelocal.getString("nome"));
-            local.setNome(bundlelocal.getString("descricao"));
+            local.setDescricao(bundlelocal.getString("descricao"));
             local.setContato(bundlelocal.getString("contato"));
             local.setSetor(bundlelocal.getString("setor"));
             local.setResponsavel(bundlelocal.getString("responsavel"));
             local.setImage(bundlelocal.getString("imagem"));
-
             local.setLatitude(bundlelocal.getDouble("latitude"));
             local.setLongitude(bundlelocal.getDouble("longitude"));
 
@@ -72,7 +71,7 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
                     .into(image);
         }
 
-//        mMapView = (MapView) findViewById(R.id.map);
+        mMapView = (MapView) findViewById(R.id.map);
 
         if (mMapView != null) {
             mMapView.onCreate(null);

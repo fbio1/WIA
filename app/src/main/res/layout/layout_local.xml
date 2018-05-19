@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_arvore"
-    android:onClick="limpar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -45,7 +44,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="250dp"
+                    android:layout_width="290dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
@@ -75,6 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#ffffff"
+                        android:src="@mipmap/next"
                         android:elevation="0dp"/>
 
                 </LinearLayout>

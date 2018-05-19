@@ -47,18 +47,16 @@ public class FragmentRecyclerLocal extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.activity_fragment_recycler_local, container, false);
 
-        imageView = (ImageView) v.findViewById(R.id.imagemdocaralho);
+        //imageView = (ImageView) v.findViewById(R.id.imagemdocaralho);
 //        Picasso.get().
 //                load("https://firebasestorage.googleapis.com/v0/b/wia-ufrn.appspot.com/o/reiot.jpg?alt=media&token=63587484-1c35-4140-bc89-d9c12f2f044c").
 //                into(imageView);
 
-        //imageView.setImageResource(R.drawable.ufrn);
+        imageView = v.findViewById(R.id.foto_local);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         mDatabaseReference = mFirebaseDatabase.getReference().child("local");
-
-
 
         recyclerView = v.findViewById(R.id.recyclerview);
 
@@ -74,6 +72,7 @@ public class FragmentRecyclerLocal extends Fragment {
                 Intent intentDetalhes = new Intent(getActivity(), DetalhesActivity.class);
                 Bundle localBundle = new Bundle();
 
+
                 Local local = adapter.getLocal(position);
 
                 localBundle.putString("nome", local.getNome());
@@ -81,9 +80,7 @@ public class FragmentRecyclerLocal extends Fragment {
                 localBundle.putString("contato", local.getContato());
                 localBundle.putString("responsavel", local.getResponsavel());
 
-
-                //localBundle.putString("imagem", local.getImage());
-                readImage(local.getImage());
+                localBundle.putString("imagem", local.getImage());
 
                 localBundle.putString("setor", local.getSetor());
                 localBundle.putDouble("latitude", local.getLatitude());
@@ -91,7 +88,7 @@ public class FragmentRecyclerLocal extends Fragment {
 
                 intentDetalhes.putExtras(localBundle);
                 startActivity(intentDetalhes);
-                Log.i("TESTE", "Entrou aqui no click");
+                //Log.i("TESTE", "Entrou aqui no click");
             }
         }));
 
@@ -120,11 +117,14 @@ public class FragmentRecyclerLocal extends Fragment {
     }
 
 
+//    readImage(local.getImage());
+//    Log.i("TESTE", "satanas "+local.getImage());
+
     public void readImage(String imageName){
-        final String urlFirebase = "gs://wia-ufrn.appspot.com";
+        //final String urlFirebase = "gs://wia-ufrn.appspot.com";
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(urlFirebase).child(imageName);
+        StorageReference storageRef = storage.getReferenceFromUrl("gs://wia-ufrn.appspot.com/").child(imageName);
 
         try {
             final File localFile = File.createTempFile("images", "jpg");

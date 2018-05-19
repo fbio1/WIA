@@ -1,4 +1,4 @@
-package com.wia.Activity;
+package com.wia.activity;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;

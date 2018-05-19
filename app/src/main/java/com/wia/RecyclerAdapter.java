@@ -1,6 +1,9 @@
 package com.wia;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +13,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.wia.model.Local;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,14 +58,33 @@ public class RecyclerAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        LocalViewHolder locaisViewHolder = (LocalViewHolder) holder;
+        final LocalViewHolder locaisViewHolder = (LocalViewHolder) holder;
         Local local = listaLocal.get(position);
         locaisViewHolder.nome.setText(local.getNome());
         locaisViewHolder.setor.setText(local.getSetor());
 
-        Glide.with(locaisViewHolder.img.getContext())
-                .load(local.getImage())
-                .into(locaisViewHolder.img);
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReferenceFromUrl("gs://wia-ufrn.appspot.com/").child(local.getImage());
+
+        try {
+            final File localFile = File.createTempFile("images", "jpg");
+            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    //locaisViewHolder.img.setImageBitmap(bitmap);
+                    Glide.with(locaisViewHolder.img.getContext())
+                            .load(bitmap)
+                            .into(locaisViewHolder.img);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                }
+            });
+        } catch (IOException e ) {}
+
+
     }
 
     @Override
@@ -80,4 +109,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter{
             linearLayout = itemView.findViewById(R.id.linearLayoutLocal);
         }
     }
+
+
 }

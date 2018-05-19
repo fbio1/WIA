@@ -1,9 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.DetalhesActivity">
+    tools:context=".activity.DetalhesActivity">
 
-</LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="384dp"
+            android:layout_height="208dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="304dp">
+
+        </com.google.android.gms.maps.MapView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="281dp"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_baseline_domain_48px" />
+
+                    <TextView
+                        android:id="@+id/nomeDetalhes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="16dp"
+                        android:text="Nome do Local"
+                        android:textColor="@android:color/black"
+                        android:textSize="21dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="350dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/darker_gray"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/setorDetalhes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="Setor"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="16dp"
+                        android:textStyle="normal" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:src="@drawable/ic_baseline_call_24px"/>
+
+                    <TextView
+                        android:id="@+id/contatoDetalhes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="Contato"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="16dp"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/responsavelDetalhes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Responsável"
+                    android:padding="16dp"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="16dp"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/descricaoDetalhes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Descricao"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="16dp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <ImageView
+            android:id="@+id/imageDetalhes"
+            android:layout_width="match_parent"
+            android:layout_height="151dp"
+            android:src="@mipmap/ic_launcher" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

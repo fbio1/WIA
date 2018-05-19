@@ -1,4 +1,4 @@
-package com.wia.Activity;
+package com.wia.activity;
 
 import android.content.Intent;
 import android.net.Uri;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context="com.wia.Activity.AjudaActivity">
+    tools:context="com.wia.activity.AjudaActivity">
 
     <LinearLayout
         android:layout_marginTop="80dp"
