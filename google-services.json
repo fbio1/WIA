@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "853598536057",
+    "firebase_url": "https://wia-ufrn.firebaseio.com",
+    "project_id": "wia-ufrn",
+    "storage_bucket": "wia-ufrn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853598536057:android:7a0d05afd7ad89a1",
+        "android_client_info": {
+          "package_name": "com.wia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853598536057-avppclijmfq0qrig6o8bcu013n77jcak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wia",
+            "certificate_hash": "d7cb99d5e7c942f6b438c4af571508e4a02c85aa"
+          }
+        },
+        {
+          "client_id": "853598536057-turct7k28v7nrgbol9o4mv2ctfgggjpi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHOlhatMGXsnMm3Ty0dpvAwhyTfTXs3GU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853598536057-turct7k28v7nrgbol9o4mv2ctfgggjpi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
