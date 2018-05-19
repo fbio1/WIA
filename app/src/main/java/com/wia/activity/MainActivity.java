@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         localReference = database.getReference().child("local");
 
-        preencheBanco();
+        //preenchelocal();
 
         fragmentRecyclerlocal = new FragmentRecyclerLocal();
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentLayout, fragmentRecyclerlocal);
@@ -59,24 +59,33 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
-
-    public void preencheBanco() {
-        preenchelocal();
-    }
-
     public void preenchelocal() {
-        Local c1 = new Local("Auditório da Reitoria", "", "", "", "reiot.jpg", "Próximo ao centro de Convivência", -5.835574, -35.202114);
-//        Local c2 = new Local("Setor de Aulas IV", "", "", "", "", "Bloco A", -5.837592, -35.199491);
-//        Local c3 = new Local("Setor de Aulas III, Bloco G", "", "", "", "", "Setor 3", -5.835574, -35.202114);
-//        Local c4 = new Local("Anfiteatros do CCET – Centro de Ciências Exatas e da Terra", "", "", "", "", "Próximo ao setor 3", -5.837592, -35.199491);
-//        Local c5 = new Local("Anfiteatros do CB – Centro de Biociências", "", "", "", "", "Próximo ao setor 4", -5.835574, -35.202114);
-//        Local c6 = new Local("Auditório da ECT – Escola de Ciência e Tecnologia", "", "", "", "", "Próximo ao setor 4", -5.837592, -35.199491);
+        Local c1 = new Local("Auditório da Reitoria", "", "", "reitoria.jpg", "Próximo ao centro de Convivência", "",
+                "", -5.835574, -35.202114);
+        Local c2 = new Local("Setor de Aulas IV", "", "", "setor4.jpg", "Bloco A", "",
+                "", -5.837592, -35.199491);
+
+        Local c3 = new Local("Setor de Aulas III", "", "", "setor3.jpg", "Bloco G", "",
+                "", -5.835574, -35.202114);
+
+        Local c4 = new Local("Anfiteatros do CCET",
+                "Centro de Ciências Exatas e da Terra",
+                "Prof. Djalma Ribeiro da Silva", "CCET.jpg","Próximo ao setor 3", "", "(84) 3215-3781", -5.837592, -35.199491);
+
+        Local c5 = new Local("Anfiteatros do CB – Centro de Biociências",
+                "O Centro de Biociência é composto por cinco Cursos de Graduação: Engenharia de Aquicultura, Biomedicina, Ciências Biológicas, Ciências Biológicas à Distância e Ecologia. ",
+                "Prof. Graco Aurélio Câmara de Melo Viana", "CB.jpg", "Próximo ao setor 4", "contato@cb.ufrn.br", "", -5.835574, -35.202114);
+
+        Local c6 = new Local("Auditório da ECT – Escola de Ciência e Tecnologia",
+                "A Escola de Ciências e Tecnologia foi fundada com o objetivo de oferecer todo o suporte operacional ao Bacharelado em Ciências e Tecnologia",
+                "Prof. Douglas do Nascimento Silva", "ect.jpg", "Próximo ao setor 4", "", "(84) 3342.2301", -5.837592, -35.199491);
+
         localReference.push().setValue(c1);
-//        localReference.push().setValue(c2);
-//        localReference.push().setValue(c3);
-//        localReference.push().setValue(c4);
-//        localReference.push().setValue(c5);
-//        localReference.push().setValue(c6);
+        localReference.push().setValue(c2);
+        localReference.push().setValue(c3);
+        localReference.push().setValue(c4);
+        localReference.push().setValue(c5);
+        localReference.push().setValue(c6);
 
     }
 

@@ -58,6 +58,7 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
             local.setSetor(bundlelocal.getString("setor"));
             local.setResponsavel(bundlelocal.getString("responsavel"));
             local.setImage(bundlelocal.getString("imagem"));
+            local.setEmail(bundlelocal.getString("email"));
             local.setLatitude(bundlelocal.getDouble("latitude"));
             local.setLongitude(bundlelocal.getDouble("longitude"));
 

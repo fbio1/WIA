@@ -79,9 +79,8 @@ public class FragmentRecyclerLocal extends Fragment {
                 localBundle.putString("descricao", local.getDescricao());
                 localBundle.putString("contato", local.getContato());
                 localBundle.putString("responsavel", local.getResponsavel());
-
                 localBundle.putString("imagem", local.getImage());
-
+                localBundle.putString("email", local.getEmail());
                 localBundle.putString("setor", local.getSetor());
                 localBundle.putDouble("latitude", local.getLatitude());
                 localBundle.putDouble("longitude", local.getLongitude());

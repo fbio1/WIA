@@ -11,16 +11,18 @@ public class Local {
     private String contato;
     private String image;
     private String setor;
+    private String email;
     private double latitude;
     private double longitude;
 
-    public Local(String nome, String descricao, String responsavel, String contato, String image, String setor, double latitude, double longitude) {
+    public Local(String nome, String descricao, String responsavel, String image, String setor, String email, String contato, double latitude, double longitude) {
         this.nome = nome;
         this.descricao = descricao;
         this.responsavel = responsavel;
         this.contato = contato;
         this.image = image;
         this.setor = setor;
+        this.email = email;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -98,6 +100,14 @@ public class Local {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
