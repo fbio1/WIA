@@ -1,4 +1,4 @@
-package com.wia;
+package com.wia.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.wia.R;
 import com.wia.model.Local;
+import com.wia.utils.WIAUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +30,7 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter{
     private List<Local> listaLocal;
     private Context c;
+
 
     public RecyclerAdapter(List<Local> listaLocal, Context c) {
         if (listaLocal != null){
@@ -63,27 +66,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter{
         locaisViewHolder.nome.setText(local.getNome());
         locaisViewHolder.setor.setText(local.getSetor());
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://wia-ufrn.appspot.com/").child(local.getImage());
-
-        try {
-            final File localFile = File.createTempFile("images", "jpg");
-            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    //locaisViewHolder.img.setImageBitmap(bitmap);
-                    Glide.with(locaisViewHolder.img.getContext())
-                            .load(bitmap)
-                            .into(locaisViewHolder.img);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                }
-            });
-        } catch (IOException e ) {}
-
+        WIAUtils.handleImage(locaisViewHolder, local);
 
     }
 
@@ -97,10 +80,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter{
     }
 
     public class LocalViewHolder extends RecyclerView.ViewHolder{
-        final LinearLayout linearLayout;
-        final TextView nome;
-        final ImageView img;
-        final TextView setor;
+        public final LinearLayout linearLayout;
+        public final TextView nome;
+        public final ImageView img;
+        public final TextView setor;
         public LocalViewHolder(View itemView) {
             super(itemView);
             nome = itemView.findViewById(R.id.nomeLocal);
@@ -109,6 +92,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter{
             linearLayout = itemView.findViewById(R.id.linearLayoutLocal);
         }
     }
+
+
 
 
 }

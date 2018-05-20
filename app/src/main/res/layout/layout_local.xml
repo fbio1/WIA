@@ -53,29 +53,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Nome do Local "
-                        android:textSize="20dp" />
+                        android:textColor="@android:color/black"
+                        android:textSize="21dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/nomeSetor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textSize="14dp"
-                        android:text="Nome do Setor" />
+                        android:text="Nome do Setor"
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right">
+                    android:gravity="center">
 
                     <ImageButton
                         android:id="@+id/proximo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#ffffff"
-                        android:src="@mipmap/next"
-                        android:elevation="0dp"/>
+                        android:background="@null"
+                        android:elevation="0dp"
+                        android:paddingTop="8dp"
+                        android:src="@drawable/ic_baseline_chevron_right_24px" />
 
                 </LinearLayout>
 

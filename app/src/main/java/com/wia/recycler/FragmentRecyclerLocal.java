@@ -4,15 +4,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,30 +29,35 @@ import com.google.firebase.storage.StorageReference;
 import com.wia.activity.DetalhesActivity;
 import com.wia.MyRecyclerView;
 import com.wia.R;
-import com.wia.RecyclerAdapter;
+import com.wia.adapter.RecyclerAdapter;
+import com.wia.connection.ConnectivityReceiver;
+import com.wia.connection.ListenerConnection;
 import com.wia.model.Local;
 
 import java.io.File;
 import java.io.IOException;
 
-public class FragmentRecyclerLocal extends Fragment {
+public class FragmentRecyclerLocal extends Fragment implements ConnectivityReceiver.ConnectivityReceiverListener{
     private RecyclerView recyclerView;
+    private LinearLayout linearLayout;
     private RecyclerAdapter adapter;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildEventListener;
 
-    ImageView imageView;
+    private View v;
+
+    private ImageView imageView;
+    private FloatingActionButton buttonRefreshConnection;
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.activity_fragment_recycler_local, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //imageView = (ImageView) v.findViewById(R.id.imagemdocaralho);
-//        Picasso.get().
-//                load("https://firebasestorage.googleapis.com/v0/b/wia-ufrn.appspot.com/o/reiot.jpg?alt=media&token=63587484-1c35-4140-bc89-d9c12f2f044c").
-//                into(imageView);
+        v = inflater.inflate(R.layout.activity_fragment_recycler_local, container, false);
+
+        checkConnection();
 
         imageView = v.findViewById(R.id.foto_local);
 
@@ -58,7 +65,17 @@ public class FragmentRecyclerLocal extends Fragment {
 
         mDatabaseReference = mFirebaseDatabase.getReference().child("local");
 
-        recyclerView = v.findViewById(R.id.recyclerview);
+        recyclerView = v.findViewById(R.id.recyclerviewLocais);
+        linearLayout = v.findViewById(R.id.infoConnection);
+        buttonRefreshConnection = v.findViewById(R.id.btn_refresh_connection);
+
+        buttonRefreshConnection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Manually checking internet connection
+                checkConnection();
+            }
+        });
 
         adapter = new RecyclerAdapter(null, getContext());
         recyclerView.setAdapter(adapter);
@@ -97,49 +114,67 @@ public class FragmentRecyclerLocal extends Fragment {
                 Local local = dataSnapshot.getValue(Local.class);
                 adapter.add(local);
             }
+
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
+
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+            }
         };
         mDatabaseReference.addChildEventListener(mChildEventListener);
 
         return v;
     }
 
-    public RecyclerAdapter getAdapter(){
+    public RecyclerAdapter getAdapter() {
         return this.adapter;
     }
 
+    private void checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected);
+    }
 
-//    readImage(local.getImage());
-//    Log.i("TESTE", "satanas "+local.getImage());
+    // Showing the status in Snackbar
+    private void showSnack(boolean isConnected) {
+        String message = null;
+        if (!isConnected) {
+            recyclerView = v.findViewById(R.id.recyclerviewLocais);
+            recyclerView.setVisibility(View.GONE);
+            linearLayout = v.findViewById(R.id.infoConnection);
+            linearLayout.setVisibility(View.VISIBLE);
+            message = "Desculpe! Você não possui conexão com a Internet";
+            Toast toast = Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG);
+            toast.show();
+        } else {
+            recyclerView = v.findViewById(R.id.recyclerviewLocais);
+            recyclerView.setVisibility(View.VISIBLE);
+            linearLayout = v.findViewById(R.id.infoConnection);
+            linearLayout.setVisibility(View.GONE);
+        }
 
-    public void readImage(String imageName){
-        //final String urlFirebase = "gs://wia-ufrn.appspot.com";
+    }
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://wia-ufrn.appspot.com/").child(imageName);
+    @Override
+    public void onResume() {
+        super.onResume();
 
-        try {
-            final File localFile = File.createTempFile("images", "jpg");
-            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    imageView.setImageBitmap(bitmap);
+        // register connection status listener
+        ListenerConnection.getInstance().setConnectivityListener(this);
+    }
 
-                }
-
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                }
-            });
-        } catch (IOException e ) {}
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        showSnack(isConnected);
     }
 }
