@@ -4,39 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context="com.wia.activity.ContatoActivity">
 
     <LinearLayout
-        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Caso queria sugerir novas funionalidades ou atualizações de dados para o WIA entre em contato pelo email:"
+            android:text="@string/contato_desc_text"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat"/>
+            android:textAppearance="@style/TextAppearance.AppCompat" />
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/emailLink"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="1dp"
-            android:text="wia@gmail.com"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textStyle="bold|italic" />
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="@string/email_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="16dp"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="6dp"
+                android:src="@drawable/ic_menu_send" />
+
+
+        </LinearLayout>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray" />
 
     <LinearLayout
         android:layout_width="match_parent"

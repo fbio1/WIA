@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">WIA</string>
+    <string name="sobre">Sobre</string>
+    <string name="responsavel">Responsable</string>
+    <string name="sobre_text">" El \"Where I am\" (WIA) es una aplicación, que tiene como principal objetivo indicar la ubicación de los principales departamentos de UFRN para alumnos, empleados y visitantes."</string>
+    <string name="label_local">WIA</string>
+    <string name="info_label">Información</string>
+    <string name="desenvolvedores_do_aplicativo">Desarrolladores de aplicaciones</string>
+    <string name="descricao">Descripción del Sitio</string>
+    <string name="contato">Contacto</string>
+    <string name="contato_desc_text">Si desea sugerir nuevas funcionalidades o actualizar datos a WIA, por favor, haga clic en el siguiente correo electrónico:</string>
+    <string name="ajuda">Ayuda</string>
+    <string name="_2018_wia_todos_os_direitos_revervados">" © 2018 WIA. Todos los derechos reverberados"</string>
+</resources>

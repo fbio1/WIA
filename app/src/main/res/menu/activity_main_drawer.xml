@@ -22,21 +22,21 @@
             <!--android:title="Tools" />-->
     <!--</group>-->
 
-    <item android:title="Informações">
+    <item android:title="@string/info_label">
         <menu>
             <item
                 android:id="@+id/contato"
                 android:icon="@mipmap/ic_feedback"
-                android:title="Contato" />
+                android:title="@string/contato" />
             <item
                 android:id="@+id/sobre"
                 android:icon="@mipmap/ic_info"
-                android:title="Sobre" />
+                android:title="@string/sobre" />
             <item
                 android:id="@+id/ajuda"
                 android:visible="false"
                 android:icon="@mipmap/ic_ajuda"
-                android:title="Ajuda" />
+                android:title="@string/ajuda" />
         </menu>
     </item>
 

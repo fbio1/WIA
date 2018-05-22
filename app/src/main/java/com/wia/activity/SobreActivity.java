@@ -19,7 +19,7 @@ public class SobreActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
 
-        ab.setTitle("Sobre");
+        //ab.setTitle("Sobre");
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setHomeButtonEnabled(true);
 

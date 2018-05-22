@@ -15,11 +15,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name"
+            android:label="@string/label_local"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -30,18 +30,22 @@
         </activity>
         <activity
             android:name=".activity.SobreActivity"
+            android:label="@string/sobre"
             android:parentActivityName=".activity.MainActivity"
             android:screenOrientation="locked" />
         <activity
             android:name=".activity.AjudaActivity"
+            android:label="@string/ajuda"
             android:parentActivityName=".activity.MainActivity"
             android:screenOrientation="locked" />
         <activity
             android:name=".activity.ContatoActivity"
+            android:label="@string/contato"
             android:parentActivityName=".activity.MainActivity"
             android:screenOrientation="locked" />
         <activity
             android:name=".activity.DetalhesActivity"
+            android:label="@string/descricao"
             android:parentActivityName=".activity.MainActivity"
             android:screenOrientation="locked" />
 

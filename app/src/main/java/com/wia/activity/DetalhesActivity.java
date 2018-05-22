@@ -32,6 +32,8 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
 
     private LinearLayout contatoLayout;
     private LinearLayout emailLayout;
+    private LinearLayout resposavelLayout;
+    private LinearLayout descricaoLayout;
 
     GoogleMap mGoogleMap;
     MapView mMapView;
@@ -44,7 +46,7 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_detalhes);
 
         ActionBar ab = getSupportActionBar();
-        ab.setTitle("Detalhes da Local");
+        //ab.setTitle("Detalhes da Local");
         ab.setDisplayHomeAsUpEnabled(true);
 
         image = findViewById(R.id.imageDetalhes);
@@ -57,6 +59,9 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
 
         emailLayout = (LinearLayout) findViewById(R.id.emailLayout);
         contatoLayout = (LinearLayout) findViewById(R.id.contatoLayout);
+        resposavelLayout = (LinearLayout) findViewById(R.id.responsavelLayout);
+        descricaoLayout = (LinearLayout) findViewById(R.id.descricaoLayout);
+
 
         local = new Local();
         Intent recebe = getIntent();
@@ -68,7 +73,7 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
             if (!bundlelocal.getString("descricao").isEmpty())
                 local.setDescricao(bundlelocal.getString("descricao"));
             else
-                descricao.setVisibility(View.GONE);
+                descricaoLayout.setVisibility(View.GONE);
 
             if (!bundlelocal.getString("contato").isEmpty())
                 local.setContato(bundlelocal.getString("contato"));
@@ -80,7 +85,7 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
             if (!bundlelocal.getString("responsavel").isEmpty())
                 local.setResponsavel(bundlelocal.getString("responsavel"));
             else
-                responsavel.setVisibility(View.GONE);
+                resposavelLayout.setVisibility(View.GONE);
 
             local.setImage(bundlelocal.getString("imagem"));
 

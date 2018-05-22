@@ -1,5 +1,6 @@
 package com.wia.utils;
 
+import android.app.ActionBar;
 import android.app.Application;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
@@ -32,6 +33,8 @@ public class WIAUtils extends Application {
                 .load(storageRef)
                 .into(imageView);
     }
+
+
 
     /*FirebaseStorage storage = FirebaseStorage.getInstance();
         final StorageReference storageRef = storage.getReference().child(local.getImage());

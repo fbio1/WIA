@@ -16,7 +16,7 @@ public class AjudaActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Ajuda");
+        /*actionBar.setTitle("Ajuda");*/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 

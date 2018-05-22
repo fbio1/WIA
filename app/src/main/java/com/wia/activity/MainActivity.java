@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -18,6 +19,8 @@ import com.wia.R;
 import com.wia.model.Local;
 import com.wia.fragment.FragmentRecyclerLocal;
 import com.wia.utils.WIAUtils;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity
 
     private FragmentRecyclerLocal fragmentRecyclerlocal;
 
+    private TextView titleTV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +40,16 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        String language = Locale.getDefault().getCountry();
+        ActionBar ab = getSupportActionBar();
+
+        setTitleActionBar(language, ab);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("Lista de Locais");
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -120,6 +127,20 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void setTitleActionBar(String language, ActionBar actionBar){
+
+        if(language.equals("BR"))
+            actionBar.setTitle("Locais");
+        else if (language.equals("GB"))
+            actionBar.setTitle("Places");
+        else if (language.equals("FR"))
+            actionBar.setTitle("Lieux");
+        else if (language.equals("ES"))
+            actionBar.setTitle("Lugares");
+
+
     }
 
 }
