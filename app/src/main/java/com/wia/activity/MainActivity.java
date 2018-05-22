@@ -1,30 +1,21 @@
 package com.wia.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.wia.R;
-import com.wia.connection.ConnectivityReceiver;
-import com.wia.connection.ListenerConnection;
 import com.wia.model.Local;
-import com.wia.recycler.FragmentRecyclerLocal;
+import com.wia.fragment.FragmentRecyclerLocal;
 import com.wia.utils.WIAUtils;
 
 public class MainActivity extends AppCompatActivity

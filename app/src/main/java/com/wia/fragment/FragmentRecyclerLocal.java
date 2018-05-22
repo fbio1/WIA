@@ -1,9 +1,6 @@
-package com.wia.recycler;
+package com.wia.fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -16,28 +13,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.wia.activity.DetalhesActivity;
-import com.wia.MyRecyclerView;
 import com.wia.R;
 import com.wia.adapter.RecyclerAdapter;
 import com.wia.connection.ConnectivityReceiver;
-import com.wia.connection.ListenerConnection;
 import com.wia.model.Local;
+import com.wia.recycler.MyRecyclerView;
 
-import java.io.File;
-import java.io.IOException;
-
-public class FragmentRecyclerLocal extends Fragment implements ConnectivityReceiver.ConnectivityReceiverListener{
+public class FragmentRecyclerLocal extends Fragment{
     private RecyclerView recyclerView;
     private LinearLayout linearLayout;
     private RecyclerAdapter adapter;
@@ -57,7 +45,7 @@ public class FragmentRecyclerLocal extends Fragment implements ConnectivityRecei
 
         v = inflater.inflate(R.layout.activity_fragment_recycler_local, container, false);
 
-        checkConnection();
+        //checkConnection();
 
         imageView = v.findViewById(R.id.foto_local);
 
@@ -69,13 +57,13 @@ public class FragmentRecyclerLocal extends Fragment implements ConnectivityRecei
         linearLayout = v.findViewById(R.id.infoConnection);
         buttonRefreshConnection = v.findViewById(R.id.btn_refresh_connection);
 
-        buttonRefreshConnection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Manually checking internet connection
-                checkConnection();
-            }
-        });
+//        buttonRefreshConnection.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Manually checking internet connection
+//                checkConnection();
+//            }
+//        });
 
         adapter = new RecyclerAdapter(null, getContext());
         recyclerView.setAdapter(adapter);
@@ -165,7 +153,7 @@ public class FragmentRecyclerLocal extends Fragment implements ConnectivityRecei
 
     }
 
-    @Override
+   /* @Override
     public void onResume() {
         super.onResume();
 
@@ -176,5 +164,5 @@ public class FragmentRecyclerLocal extends Fragment implements ConnectivityRecei
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
         showSnack(isConnected);
-    }
+    }*/
 }

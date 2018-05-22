@@ -78,26 +78,26 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
         if (bundlelocal != null) {
             local.setNome(bundlelocal.getString("nome"));
 
-            if(!bundlelocal.getString("descricao").isEmpty())
+            if (!bundlelocal.getString("descricao").isEmpty())
                 local.setDescricao(bundlelocal.getString("descricao"));
             else
                 descricao.setVisibility(View.GONE);
 
-            if(!bundlelocal.getString("contato").isEmpty())
+            if (!bundlelocal.getString("contato").isEmpty())
                 local.setContato(bundlelocal.getString("contato"));
             else
                 contatoLayout.setVisibility(View.GONE);
 
             local.setSetor(bundlelocal.getString("setor"));
 
-            if(!bundlelocal.getString("responsavel").isEmpty())
+            if (!bundlelocal.getString("responsavel").isEmpty())
                 local.setResponsavel(bundlelocal.getString("responsavel"));
             else
                 responsavel.setVisibility(View.GONE);
 
             local.setImage(bundlelocal.getString("imagem"));
 
-            if(!bundlelocal.getString("email").isEmpty())
+            if (!bundlelocal.getString("email").isEmpty())
                 local.setEmail(bundlelocal.getString("email"));
             else
                 emailLayout.setVisibility(View.GONE);
@@ -112,26 +112,7 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
             setor.setText(local.getSetor());
             email.setText(local.getEmail());
 
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReferenceFromUrl(WIAUtils.URL_FIREBASE).child(local.getImage());
-
-            try {
-                final File localFile = File.createTempFile("images", "jpg");
-                storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                        //locaisViewHolder.img.setImageBitmap(bitmap);
-                        Glide.with(image.getContext().getApplicationContext())
-                                .load(bitmap)
-                                .into(image);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                    }
-                });
-            } catch (IOException e ) {}
+            WIAUtils.handleImage(image, local);
 
         }
 
@@ -158,4 +139,27 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
         googleMap.addMarker(new MarkerOptions().position(new LatLng(local.getLatitude(), local.getLongitude())).title(local.getNome()));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(local.getLatitude(), local.getLongitude()), 18));
     }
+
+    /*FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReferenceFromUrl(WIAUtils.URL_FIREBASE).child(local.getImage());
+
+            try {
+                final File localFile = File.createTempFile("images", "jpg");
+                storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        //locaisViewHolder.img.setImageBitmap(bitmap);
+                        Glide.with(image.getContext().getApplicationContext())
+                                .load(bitmap)
+                                .into(image);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                    }
+                });
+            } catch (IOException e ) {}
+
+        }*/
 }

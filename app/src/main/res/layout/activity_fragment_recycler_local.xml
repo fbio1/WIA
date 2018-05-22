@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".recycler.FragmentRecyclerLocal">
+    tools:context=".fragment.FragmentRecyclerLocal">
 
     <LinearLayout
         android:id="@+id/infoConnection"

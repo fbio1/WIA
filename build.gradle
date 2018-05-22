@@ -10,7 +10,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.1.2'
         classpath 'com.google.gms:google-services:3.2.0' // google-services plugin
         // os serviços do google (firebase) que vamos usar é 11.8.0
-
         
 
 

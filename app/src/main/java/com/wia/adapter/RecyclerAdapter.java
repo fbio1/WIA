@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -66,7 +67,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter{
         locaisViewHolder.nome.setText(local.getNome());
         locaisViewHolder.setor.setText(local.getSetor());
 
-        WIAUtils.handleImage(locaisViewHolder, local);
+        WIAUtils.handleImage(locaisViewHolder.img, local);
 
     }
 
