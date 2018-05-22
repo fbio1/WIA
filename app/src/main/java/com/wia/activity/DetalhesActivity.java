@@ -1,9 +1,6 @@
 package com.wia.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -21,18 +17,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.wia.R;
-import com.wia.adapter.RecyclerAdapter;
 import com.wia.model.Local;
 import com.wia.utils.WIAUtils;
-
-import java.io.File;
-import java.io.IOException;
 
 public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCallback {
     private ImageView image;
@@ -113,7 +100,6 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
             email.setText(local.getEmail());
 
             WIAUtils.handleImage(image, local);
-
         }
 
         mMapView = (MapView) findViewById(R.id.map);
@@ -137,7 +123,7 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(liberty));
 
         googleMap.addMarker(new MarkerOptions().position(new LatLng(local.getLatitude(), local.getLongitude())).title(local.getNome()));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(local.getLatitude(), local.getLongitude()), 18));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(local.getLatitude(), local.getLongitude()), 17));
     }
 
     /*FirebaseStorage storage = FirebaseStorage.getInstance();

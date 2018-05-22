@@ -34,6 +34,7 @@
                 android:title="Sobre" />
             <item
                 android:id="@+id/ajuda"
+                android:visible="false"
                 android:icon="@mipmap/ic_ajuda"
                 android:title="Ajuda" />
         </menu>
