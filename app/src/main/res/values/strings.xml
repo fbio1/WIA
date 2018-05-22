@@ -18,7 +18,7 @@
     <string name="adryel_juliao" translatable="false">Adryel Julião<a href="https://github.com/dryel23"></a></string>
     <string name="todo" translatable="false">TODO</string>
     <string name="email_text">WIA.SAapp@gmail.com</string>
-    <string name="contato_desc_text">Caso queira sugerir novas funcionalidades ou atualização de dados para o WIA entre em contato clicando no email abaixo:</string>
+    <string name="contato_desc_text" formatted="true">Caso queira sugerir novas funcionalidades ou atualização de dados para o WIA entre em contato clicando no email abaixo:</string>
     <string name="responsavel">Responsável</string>
     <string name="descricao">Descrição do Local</string>
     <string name="sobre">Sobre</string>

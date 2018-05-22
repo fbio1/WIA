@@ -58,13 +58,14 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/desenvolvedores_do_aplicativo"
             android:textAlignment="center"
+            android:layout_gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textStyle="bold"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -142,11 +143,12 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_2018_wia_todos_os_direitos_revervados"
         android:layout_marginTop="60dp"
         android:textAlignment="center"
+        android:layout_gravity="center"
         android:textSize="12dp"/>
 
 </LinearLayout>

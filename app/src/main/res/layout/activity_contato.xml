@@ -18,9 +18,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:padding="16dp"
             android:text="@string/contato_desc_text"
             android:textAlignment="center"
+            android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <LinearLayout
