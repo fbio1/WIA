@@ -1,12 +1,15 @@
 package com.wia.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -61,7 +64,6 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
         contatoLayout = (LinearLayout) findViewById(R.id.contatoLayout);
         resposavelLayout = (LinearLayout) findViewById(R.id.responsavelLayout);
         descricaoLayout = (LinearLayout) findViewById(R.id.descricaoLayout);
-
 
         local = new Local();
         Intent recebe = getIntent();
@@ -130,6 +132,27 @@ public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCal
         googleMap.addMarker(new MarkerOptions().position(new LatLng(local.getLatitude(), local.getLongitude())).title(local.getNome()));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(local.getLatitude(), local.getLongitude()), 17));
     }
+
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        int action = event.getAction();
+//        switch (action) {
+//            case MotionEvent.ACTION_DOWN:
+//                // Disallow ScrollView to intercept touch events.
+//                c.getApplicationContext().requestDisallowInterceptTouchEvent(true);
+//                break;
+//
+//            case MotionEvent.ACTION_UP:
+//                // Allow ScrollView to intercept touch events.
+//                this.getParent().requestDisallowInterceptTouchEvent(false);
+//                break;
+//        }
+//
+//        // Handle MapView's touch events.
+//        super.onTouchEvent(ev);
+//        return true;
+////        return super.onTouchEvent(event);
+//    }
 
     /*FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReferenceFromUrl(WIAUtils.URL_FIREBASE).child(local.getImage());
