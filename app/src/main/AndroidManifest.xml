@@ -51,7 +51,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAH6bqy81rb32kr3jIDGo-4neKhin519UI" />
+            android:value="retirada a senha" />
 
         <receiver
             android:name=".connection.ConnectivityReceiver"
